@@ -1,0 +1,21 @@
+<h1>Test</h1>
+<table>
+  
+    <thead>
+      <tr>
+   
+        <th>Nombre</th>
+        <th>Teléfono</th>
+        <th>País</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let cliente of clientes">
+       
+        <td>{{ cliente.nombre }}</td>
+        <td>{{ cliente.telefono | formatoTelefono }}</td>
+        <td>{{ cliente.pais }}</td>
+      </tr>
+    </tbody>
+  </table>
+  
