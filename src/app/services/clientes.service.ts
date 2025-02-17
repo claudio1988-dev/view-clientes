@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 export interface Cliente {
@@ -13,11 +13,12 @@ export interface Cliente {
   providedIn: 'root'
 })
 export class ClientesService {
-  
-  private apiUrl = 'https://localhost:7086/api/clientes/sp'; //para probar el servicio con LINQ : https://localhost:7086/api/clientes/linq
+  private apiUrl = 'https://localhost:7086/api/clientes/sp';
+
   constructor(private http: HttpClient) {}
 
-  obtenerClientes(): Observable<Cliente[]> {
-    return this.http.get<Cliente[]>(this.apiUrl);
+  obtenerClientes(page: number, pageSize: number): Observable<Cliente[]> {
+    let params = new HttpParams().set('page', page.toString()).set('pageSize', pageSize.toString());
+    return this.http.get<Cliente[]>(this.apiUrl, { params });
   }
 }
